@@ -1,15 +1,32 @@
 
-	<?php include 'header.php'; ?>
+	<?php
+	include 'header.php'; 
+	 
+	$db = new PDO("mysql:host=localhost;dbname=student", 'root', 'root');
 
-	<section class="main-news">
+	$sql = "SELECT * FROM news ORDER BY `date` DESC LIMIT 1";
+	$res = $db->query($sql);
+	$row = $res->fetch();
+	?>
+
+
+	<section class="main-news" style="background: url(img/'<?=strip_tags($row['image'])?>') no-repeat center;">
 		<div class="main-news-wrapper center">
-			<h1 class="main-news--h1">Возвращение этнографа</h1>
-			<h2 class="main-news--h2">Сегодня с Проксимы вернулась этнографическая экспедиция Джона Голдрама.</h2>
+			<h1 class="main-news--h1"><?=$row['title']?></h1>
+
+			<h2 class="main-news--h2"><?=strip_tags($row['announce'])?></h2>
 		</div>
 	</section>
 
 	<main class="center news">
 		<h3 class="news-title">Новости</h3>
+
+<?php
+	$sql = "SELECT * FROM news ORDER BY `date` DESC LIMIT 4";
+	$res = $db->query($sql);
+	$row = $res->fetch();
+	print_r($row);
+?>
 
 		<div class="news--item-wrapper">
 

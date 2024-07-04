@@ -15,7 +15,7 @@
     <header class="header center">
         <a class="header__logo" href="#">
             <img class="header__logo-img" src="img/home.png" alt="Логотип" width="93" height="89">
-            <h1 class="header__logo-title">Наша компания</h1>
+            <span class="header__logo-title">Наша компания</span>
         </a>
         <nav class="header__nav">
             <ul class="header__nav-list">

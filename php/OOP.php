@@ -130,15 +130,15 @@ class Date {
         return $this->year;
     }
 
-    // public function getWeekDay($lang = null) {
-    //     if ($lang === 'ru') {
-    //         return ['воскресенье', 'понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота'][date('w')];
-    //     } elseif ($lang === 'en') {
-    //         return ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][date('w')];
-    //     } else {
-    //         return (string)date('l');
-    //     }
-    // }
+    public function getWeekDay($lang = null) {
+        if ($lang === 'ru') {
+            return ['воскресенье', 'понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота'][date('w')];
+        } elseif ($lang === 'en') {
+            return ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][date('w')];
+        } else {
+            return (string)date('l');
+        }
+    }
 
     public function addDay($value) {
        return $this->day + $value;
@@ -148,28 +148,28 @@ class Date {
         return $this->day - $value;
     }
 
-    // public function addMonth($value) {
-    //     $this->month += (int)$value;
-    //     if ($this->month > 12) {
-    //         $this->addYear((int)floor(($this->month - 1) / 12));
-    //         $this->month %= 12;
-    //     } elseif ($this->month < 1) {
-    //         $this->subMonth((int)(-($this->month + 12)));
-    //     }
-    // }
+    public function addMonth($value) {
+        $this->month += (int)$value;
+        if ($this->month > 12) {
+            $this->addYear((int)floor(($this->month - 1) / 12));
+            $this->month %= 12;
+        } elseif ($this->month < 1) {
+            $this->subMonth((int)(-($this->month + 12)));
+        }
+    }
 
     public function subMonth($value) {
 
         return $this->month;
 
 
-        // $this->month -= (int)$value;
-        // if ($this->month < 1) {
-        //     $this->subYear((int)floor(($this->month + 12) / 12));
-        //     $this->month += 12;
-        // } elseif ($this->month > 12) {
-        //     $this->addMonth((int)(-$value);
-        // }
+        $this->month -= (int)$value;
+        if ($this->month < 1) {
+            $this->subYear((int)floor(($this->month + 12) / 12));
+            $this->month += 12;
+        } elseif ($this->month > 12) {
+            $this->addMonth((int)(-$value));
+        }
     }
 
     public function addYear($value) {
@@ -180,10 +180,10 @@ class Date {
         return $this->year - $value;
     }
 
-    public function format($format) {
-        return date("U", $format);
+    // public function format($format) {
+        // return date("U", $format);
         // return $this->month . "-" . $this->year . "-" . $this->day;
-    }
+    // }
 
     public function __toString() {
         return $this->month . "-" . $this->year . "-" . $this->day;
@@ -202,12 +202,12 @@ class Date {
     echo $date->addYear(5) . "<br>"; //2030
     echo $date->subYear(5) . "<br>"; //2020
     echo $date->__toString() . "<br>"; 
-    echo $date->format("22.04.2001") . "<br>"; 
+    // echo $date->format("22.04.2001") . "<br>"; 
     echo $date->subMonth() . "<br>";
 	
-	// echo $date->getWeekDay();     // выведет '3'
-	// echo $date->getWeekDay("ru"); // выведет 'среда'
-	// echo $date->getWeekDay("en"); // выведет 'wednesday'
+	echo $date->getWeekDay();     // выведет '3'
+	echo $date->getWeekDay("ru"); // выведет 'среда'
+	echo $date->getWeekDay("en"); // выведет 'wednesday'
 
 
 
